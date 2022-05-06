@@ -73,12 +73,15 @@ resume_site_dir() {
 }
 
 setup_gh() {
+  echo "star new branch $PAGES_BRANCH"
   if [[ -z $(git branch -av | grep "$PAGES_BRANCH") ]]; then
     _no_pages_branch=true
     git checkout -b "$PAGES_BRANCH"
   else
     git checkout "$PAGES_BRANCH"
   fi
+  echo "end new branch $PAGES_BRANCH"
+  git status
 }
 
 backup() {
@@ -102,8 +105,10 @@ flush() {
 }
 
 deploy() {
+  echo "star deploy "
+
   git config --global user.name "GitHub Actions"
-  git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+  git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
   git update-ref -d HEAD
   git add -A
