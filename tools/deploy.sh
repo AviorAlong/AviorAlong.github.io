@@ -119,6 +119,8 @@ deploy() {
   else
     git push -f
   fi
+  echo "end deploy push "
+
 }
 
 main() {
