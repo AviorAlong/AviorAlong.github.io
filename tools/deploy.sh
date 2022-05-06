@@ -113,7 +113,7 @@ deploy() {
   git update-ref -d HEAD
   git add -A
   git commit -m "[Automation] Site update No.${GITHUB_RUN_NUMBER}"
-
+  echo "star deploy push "
   if $_no_pages_branch; then
     git push -u origin "$PAGES_BRANCH"
   else
